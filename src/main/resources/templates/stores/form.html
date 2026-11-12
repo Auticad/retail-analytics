@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Negozio')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav('stores')}"></header>
+
+<main class="narrow">
+    <h1 th:text="${storeId == null} ? 'Nuovo negozio' : 'Modifica negozio'">Negozio</h1>
+
+    <!-- th:object collega il form al bean "form"; *{campo} si riferisce alle sue proprietà -->
+    <form class="form" method="post" th:object="${form}"
+          th:action="${storeId == null} ? @{/stores} : @{/stores/{id}(id=${storeId})}">
+
+        <p class="flash error" th:each="e : ${#fields.globalErrors()}" th:text="${e}">Errore</p>
+
+        <label>Codice
+            <input type="text" th:field="*{code}" maxlength="10">
+            <span class="field-error" th:if="${#fields.hasErrors('code')}" th:errors="*{code}">errore</span>
+        </label>
+        <label>Nome
+            <input type="text" th:field="*{name}" maxlength="80">
+            <span class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">errore</span>
+        </label>
+        <label>Città
+            <input type="text" th:field="*{city}" maxlength="60">
+            <span class="field-error" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">errore</span>
+        </label>
+        <label>Provincia (sigla)
+            <input type="text" th:field="*{province}" maxlength="2">
+            <span class="field-error" th:if="${#fields.hasErrors('province')}" th:errors="*{province}">errore</span>
+        </label>
+        <label>Distretto
+            <select th:field="*{districtId}">
+                <option value="">— scegli —</option>
+                <option th:each="d : ${districts}" th:value="${d.id}" th:text="${d.name}">Distretto</option>
+            </select>
+            <span class="field-error" th:if="${#fields.hasErrors('districtId')}" th:errors="*{districtId}">errore</span>
+        </label>
+        <label>Superficie (m²)
+            <input type="number" th:field="*{sqm}" min="1">
+            <span class="field-error" th:if="${#fields.hasErrors('sqm')}" th:errors="*{sqm}">errore</span>
+        </label>
+        <label>Data di apertura
+            <input type="date" th:field="*{openedOn}">
+            <span class="field-error" th:if="${#fields.hasErrors('openedOn')}" th:errors="*{openedOn}">errore</span>
+        </label>
+        <label class="check">
+            <input type="checkbox" th:field="*{active}"> Negozio attivo
+        </label>
+
+        <div class="form-actions">
+            <button type="submit">Salva</button>
+            <a class="link" th:href="@{/stores}">Annulla</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

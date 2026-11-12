@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Registra vendita')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav('sales')}"></header>
+
+<main class="narrow">
+    <h1>Registra vendita</h1>
+
+    <form class="form" method="post" th:object="${form}" th:action="@{/sales}">
+
+        <p class="flash error" th:each="e : ${#fields.globalErrors()}" th:text="${e}">Errore</p>
+
+        <label>Data
+            <input type="date" th:field="*{saleDate}">
+            <span class="field-error" th:if="${#fields.hasErrors('saleDate')}" th:errors="*{saleDate}">errore</span>
+        </label>
+        <label>Negozio
+            <select th:field="*{storeId}">
+                <option value="">— scegli —</option>
+                <option th:each="s : ${stores}" th:value="${s.id}" th:text="${s.code} + ' · ' + ${s.name}">Negozio</option>
+            </select>
+            <span class="field-error" th:if="${#fields.hasErrors('storeId')}" th:errors="*{storeId}">errore</span>
+        </label>
+        <label>Prodotto
+            <select th:field="*{productId}">
+                <option value="">— scegli —</option>
+                <option th:each="p : ${products}" th:value="${p.id}"
+                        th:text="${p.sku} + ' · ' + ${p.name} + ' (listino € ' + ${p.listPrice} + ')'">Prodotto</option>
+            </select>
+            <span class="field-error" th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}">errore</span>
+        </label>
+        <label>Quantità
+            <input type="number" th:field="*{quantity}" min="1">
+            <span class="field-error" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">errore</span>
+        </label>
+        <label>Prezzo unitario (vuoto = listino)
+            <input type="number" th:field="*{unitPrice}" min="0.01" step="0.01">
+            <span class="field-error" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">errore</span>
+        </label>
+
+        <div class="form-actions">
+            <button type="submit">Registra</button>
+            <a class="link" th:href="@{/sales}">Annulla</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

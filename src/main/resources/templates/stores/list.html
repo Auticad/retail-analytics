@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Negozi')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav('stores')}"></header>
+
+<main>
+    <div class="page-head">
+        <h1>Negozi</h1>
+        <a class="button" th:href="@{/stores/new}">Nuovo negozio</a>
+    </div>
+    <div th:replace="~{fragments/layout :: flash}"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Codice</th><th>Nome</th><th>Città</th><th>Distretto</th>
+            <th class="num">m²</th><th>Apertura</th><th>Stato</th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="s : ${stores}">
+            <td><strong th:text="${s.code}">MI01</strong></td>
+            <td th:text="${s.name}">Nome</td>
+            <td th:text="${s.city} + ' (' + ${s.province} + ')'">Città</td>
+            <td th:text="${s.districtName}">Distretto</td>
+            <td class="num" th:text="${s.sqm}">0</td>
+            <td th:text="${#temporals.format(s.openedOn, 'dd/MM/yyyy')}">01/01/2020</td>
+            <td><span class="pill" th:classappend="${s.active} ? 'good' : 'bad'"
+                      th:text="${s.active} ? 'Attivo' : 'Chiuso'">Attivo</span></td>
+            <td class="actions">
+                <a th:href="@{/stores/{id}/edit(id=${s.id})}">Modifica</a>
+                <form th:action="@{/stores/{id}/delete(id=${s.id})}" method="post">
+                    <button type="submit" class="link danger">Elimina</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

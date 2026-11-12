@@ -1,0 +1,26 @@
+-- Misure DAX per il modello costruito sulle viste v_dim_* e v_fact_*.
+-- Prerequisito: v_dim_date contrassegnata come tabella data sulla colonna date_value.
+
+Fatturato = SUM ( v_fact_sales[amount] )
+
+Margine = SUM ( v_fact_sales[margin_amount] )
+
+Margine % = DIVIDE ( [Margine], [Fatturato] )
+
+Pezzi = SUM ( v_fact_sales[quantity] )
+
+Valore medio riga = DIVIDE ( [Fatturato], COUNTROWS ( v_fact_sales ) )
+
+Obiettivo = SUM ( v_fact_target[target_amount] )
+
+Raggiungimento % = DIVIDE ( [Fatturato], [Obiettivo] )
+
+Fatturato anno precedente =
+CALCULATE ( [Fatturato], SAMEPERIODLASTYEAR ( v_dim_date[date_value] ) )
+
+Variazione % anno precedente =
+DIVIDE ( [Fatturato] - [Fatturato anno precedente], [Fatturato anno precedente] )
+
+Fatturato YTD = TOTALYTD ( [Fatturato], v_dim_date[date_value] )
+
+Fatturato al m2 = DIVIDE ( [Fatturato], SUM ( v_dim_store[sqm] ) )

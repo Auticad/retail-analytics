@@ -1,0 +1,22 @@
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+### Eclipse / STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA / VS Code ###
+.idea
+*.iml
+.vscode/
+
+### Locale ###
+.env
+
+### Output di verifica.bat ###
+verifica-log.txt

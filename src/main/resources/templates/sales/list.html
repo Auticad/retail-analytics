@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Vendite')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav('sales')}"></header>
+
+<main>
+    <div class="page-head">
+        <h1>Vendite</h1>
+        <a class="button" th:href="@{/sales/new}">Registra vendita</a>
+    </div>
+    <div th:replace="~{fragments/layout :: flash}"></div>
+
+    <form class="filters" th:action="@{/sales}" method="get">
+        <label>Dal <input type="date" name="from" th:value="${range.from}"></label>
+        <label>Al <input type="date" name="to" th:value="${range.to}"></label>
+        <label>Negozio
+            <select name="storeId">
+                <option value="">Tutti</option>
+                <option th:each="s : ${stores}" th:value="${s.id}" th:text="${s.code} + ' · ' + ${s.name}"
+                        th:selected="${s.id == storeId}">Negozio</option>
+            </select>
+        </label>
+        <button type="submit">Filtra</button>
+    </form>
+
+    <p class="empty" th:if="${#lists.isEmpty(salesPage.content)}">Nessuna vendita nel periodo.</p>
+
+    <table th:unless="${#lists.isEmpty(salesPage.content)}">
+        <thead>
+        <tr>
+            <th>Data</th><th>Negozio</th><th>Prodotto</th>
+            <th class="num">Q.tà</th><th class="num">Prezzo</th><th class="num">Importo</th><th class="num">Margine</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="v : ${salesPage.content}">
+            <td th:text="${#temporals.format(v.saleDate, 'dd/MM/yyyy')}">01/01/2026</td>
+            <td th:text="${v.storeCode} + ' · ' + ${v.storeName}">Negozio</td>
+            <td th:text="${v.sku} + ' · ' + ${v.productName}">Prodotto</td>
+            <td class="num" th:text="${v.quantity}">1</td>
+            <td class="num" th:text="${#numbers.formatDecimal(v.unitPrice, 1, 'POINT', 2, 'COMMA')}">0,00</td>
+            <td class="num" th:text="${#numbers.formatDecimal(v.amount, 1, 'POINT', 2, 'COMMA')}">0,00</td>
+            <td class="num" th:text="${#numbers.formatDecimal(v.margin, 1, 'POINT', 2, 'COMMA')}">0,00</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav class="pager" th:if="${salesPage.totalPages > 1}">
+        <a th:if="${salesPage.hasPrevious()}"
+           th:href="@{/sales(from=${range.from}, to=${range.to}, storeId=${storeId}, page=${salesPage.page - 1})}">← Precedente</a>
+        <span th:text="'Pagina ' + ${salesPage.page + 1} + ' di ' + ${salesPage.totalPages} + ' · ' + ${#numbers.formatInteger(salesPage.totalElements, 1, 'POINT')} + ' righe'">Pagina 1 di 1</span>
+        <a th:if="${salesPage.hasNext()}"
+           th:href="@{/sales(from=${range.from}, to=${range.to}, storeId=${storeId}, page=${salesPage.page + 1})}">Successiva →</a>
+    </nav>
+</main>
+</body>
+</html>

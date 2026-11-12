@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Dashboard')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav('dashboard')}"></header>
+
+<main>
+    <div class="page-head">
+        <h1>Dashboard vendite</h1>
+        <form class="filters" th:action="@{/}" method="get">
+            <label>Dal <input type="date" name="from" th:value="${range.from}"></label>
+            <label>Al <input type="date" name="to" th:value="${range.to}"></label>
+            <button type="submit">Aggiorna</button>
+            <a class="link" th:href="@{/}">Ultimi 12 mesi</a>
+        </form>
+    </div>
+
+    <section class="cards">
+        <div class="card">
+            <span class="label">Fatturato</span>
+            <span class="value" th:text="'€ ' + ${#numbers.formatDecimal(summary.revenue, 1, 'POINT', 0, 'COMMA')}">€ 0</span>
+        </div>
+        <div class="card">
+            <span class="label">Margine</span>
+            <span class="value" th:text="'€ ' + ${#numbers.formatDecimal(summary.margin, 1, 'POINT', 0, 'COMMA')}">€ 0</span>
+            <span class="sub" th:text="${#numbers.formatDecimal(summary.marginPct, 1, 'POINT', 1, 'COMMA')} + ' % sul fatturato'">0 %</span>
+        </div>
+        <div class="card">
+            <span class="label">Pezzi venduti</span>
+            <span class="value" th:text="${#numbers.formatInteger(summary.units, 1, 'POINT')}">0</span>
+        </div>
+        <div class="card">
+            <span class="label">Valore medio riga</span>
+            <span class="value" th:text="'€ ' + ${#numbers.formatDecimal(summary.averageRowValue, 1, 'POINT', 2, 'COMMA')}">€ 0</span>
+            <span class="sub" th:text="${#numbers.formatInteger(summary.saleRows, 1, 'POINT')} + ' righe di vendita'">0 righe</span>
+        </div>
+    </section>
+
+    <section>
+        <h2>Andamento mensile</h2>
+        <p class="empty" th:if="${#lists.isEmpty(months)}">Nessuna vendita nel periodo.</p>
+        <div class="bars" th:unless="${#lists.isEmpty(months)}">
+            <div class="bar-row" th:each="m : ${months}">
+                <span class="bar-label" th:text="${m.label}">2026-01</span>
+                <div class="bar-track">
+                    <div class="bar" th:classappend="${m.targetReached} ? 'reached'"
+                         th:style="'width:' + ${m.widthPct} + '%'"></div>
+                </div>
+                <span class="bar-value" th:text="'€ ' + ${#numbers.formatDecimal(m.value, 1, 'POINT', 0, 'COMMA')}">€ 0</span>
+            </div>
+            <p class="legend"><span class="dot reached"></span> obiettivo mensile raggiunto
+                <span class="dot"></span> sotto obiettivo</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Negozi</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Negozio</th>
+                <th>Distretto</th>
+                <th class="num">Fatturato</th>
+                <th class="num">Margine %</th>
+                <th class="num">Obiettivo</th>
+                <th class="num">Ragg. %</th>
+                <th class="num">€ / m²</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="s : ${stores}">
+                <td><strong th:text="${s.storeCode}">MI01</strong> <span th:text="${s.storeName}">Milano</span></td>
+                <td th:text="${s.district}">Distretto</td>
+                <td class="num" th:text="${#numbers.formatDecimal(s.revenue, 1, 'POINT', 0, 'COMMA')}">0</td>
+                <td class="num" th:text="${#numbers.formatDecimal(s.marginPct, 1, 'POINT', 1, 'COMMA')}">0</td>
+                <td class="num" th:text="${#numbers.formatDecimal(s.target, 1, 'POINT', 0, 'COMMA')}">0</td>
+                <td class="num">
+                    <span class="pill" th:classappend="${s.targetAttainmentPct >= 100} ? 'good' : 'bad'"
+                          th:text="${#numbers.formatDecimal(s.targetAttainmentPct, 1, 'POINT', 1, 'COMMA')}">0</span>
+                </td>
+                <td class="num" th:text="${#numbers.formatDecimal(s.revenuePerSqm, 1, 'POINT', 0, 'COMMA')}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="two-col">
+        <section>
+            <h2>Distretti</h2>
+            <table>
+                <thead>
+                <tr><th>Distretto</th><th>Responsabile</th><th class="num">Negozi</th><th class="num">Fatturato</th><th class="num">Margine %</th></tr>
+                </thead>
+                <tbody>
+                <tr th:each="d : ${districts}">
+                    <td th:text="${d.district}">Distretto</td>
+                    <td th:text="${d.manager}">Nome</td>
+                    <td class="num" th:text="${d.stores}">0</td>
+                    <td class="num" th:text="${#numbers.formatDecimal(d.revenue, 1, 'POINT', 0, 'COMMA')}">0</td>
+                    <td class="num" th:text="${#numbers.formatDecimal(d.marginPct, 1, 'POINT', 1, 'COMMA')}">0</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h2>Categorie</h2>
+            <table>
+                <thead>
+                <tr><th>Categoria</th><th class="num">Fatturato</th><th class="num">Margine %</th><th class="num">Pezzi</th></tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${categories}">
+                    <td th:text="${c.category}">Categoria</td>
+                    <td class="num" th:text="${#numbers.formatDecimal(c.revenue, 1, 'POINT', 0, 'COMMA')}">0</td>
+                    <td class="num" th:text="${#numbers.formatDecimal(c.marginPct, 1, 'POINT', 1, 'COMMA')}">0</td>
+                    <td class="num" th:text="${#numbers.formatInteger(c.units, 1, 'POINT')}">0</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <section>
+        <h2>Primi 5 prodotti per fatturato</h2>
+        <table>
+            <thead>
+            <tr><th>SKU</th><th>Prodotto</th><th>Categoria</th><th class="num">Pezzi</th><th class="num">Fatturato</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${topProducts}">
+                <td th:text="${p.sku}">SKU</td>
+                <td th:text="${p.productName}">Prodotto</td>
+                <td th:text="${p.category}">Categoria</td>
+                <td class="num" th:text="${#numbers.formatInteger(p.units, 1, 'POINT')}">0</td>
+                <td class="num" th:text="${#numbers.formatDecimal(p.revenue, 1, 'POINT', 0, 'COMMA')}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

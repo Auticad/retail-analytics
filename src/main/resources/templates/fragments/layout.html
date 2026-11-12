@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Frammento <head>: ogni pagina lo include passando il proprio titolo -->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title} + ' · Retail Analytics'">Retail Analytics</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body>
+
+<!-- Frammento di navigazione: "active" indica la voce da evidenziare -->
+<header th:fragment="nav(active)" class="topbar">
+    <a class="brand" th:href="@{/}">Retail Analytics</a>
+    <nav>
+        <a th:href="@{/}" th:classappend="${active == 'dashboard'} ? 'active'">Dashboard</a>
+        <a th:href="@{/stores}" th:classappend="${active == 'stores'} ? 'active'">Negozi</a>
+        <a th:href="@{/sales}" th:classappend="${active == 'sales'} ? 'active'">Vendite</a>
+        <a th:href="@{/swagger-ui.html}" target="_blank" rel="noopener">API</a>
+    </nav>
+</header>
+
+<!-- Messaggi flash impostati dai controller dopo un redirect -->
+<div th:fragment="flash">
+    <p class="flash ok" th:if="${message}" th:text="${message}">Operazione riuscita</p>
+    <p class="flash error" th:if="${error}" th:text="${error}">Errore</p>
+</div>
+
+</body>
+</html>

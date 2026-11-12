@@ -1,0 +1,41 @@
+# Stack alternativo e autonomo: un MySQL dedicato (porta 3311) e, con il profilo "app", l'applicazione.
+#   docker compose up -d db              -> solo il database
+#   docker compose --profile app up -d   -> database + applicazione containerizzata
+# Con il container MySQL che usi gia' (porta 3310) questo file non serve.
+services:
+  db:
+    image: mysql:8.4
+    container_name: retail-analytics-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: retail_analytics
+      MYSQL_USER: retail
+      MYSQL_PASSWORD: retail
+    ports:
+      - "3311:3306"
+    volumes:
+      - retail_mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uretail", "-pretail"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  app:
+    build: .
+    container_name: retail-analytics-app
+    profiles: ["app"]
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: retail_analytics
+      DB_USER: retail
+      DB_PASSWORD: retail
+    ports:
+      - "8081:8081"
+
+volumes:
+  retail_mysql:

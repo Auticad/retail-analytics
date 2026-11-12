@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Errore')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav('')}"></header>
+
+<main class="narrow">
+    <h1 th:text="'Errore ' + ${status}">Errore</h1>
+    <p th:text="${status == 404} ? 'La pagina o la risorsa richiesta non esiste.' : 'Si è verificato un errore imprevisto.'">Errore</p>
+    <p><a class="link" th:href="@{/}">Torna alla dashboard</a></p>
+</main>
+</body>
+</html>
