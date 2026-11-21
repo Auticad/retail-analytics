@@ -3,6 +3,7 @@ package io.github.auticad.retail.web;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 import io.github.auticad.retail.dto.DateRange;
@@ -42,8 +43,8 @@ public class DashboardController {
     /** Il calcolo delle proporzioni resta in Java: il template si limita a disegnare. */
     static List<ChartBar> toBars(List<MonthlySales> months) {
         BigDecimal max = months.stream()
-                .map(MonthlySales::revenue)
-                .max(BigDecimal::compareTo)
+                .map(m -> m.revenue())
+                .max(Comparator.naturalOrder())
                 .orElse(BigDecimal.ZERO);
         return months.stream()
                 .map(m -> new ChartBar(m.month(), m.revenue(), m.target(),
