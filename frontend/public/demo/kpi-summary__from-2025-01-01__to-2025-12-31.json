@@ -1,0 +1,10 @@
+{
+  "from": "2025-01-01",
+  "to": "2025-12-31",
+  "revenue": 2618041.6,
+  "margin": 1310866.5,
+  "marginPct": 50.1,
+  "units": 45429,
+  "saleRows": 18394,
+  "averageRowValue": 142.33
+}

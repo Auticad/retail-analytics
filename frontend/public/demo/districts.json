@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "code": "D01",
+    "name": "Milano e Brianza",
+    "manager": "Laura Bianchi"
+  },
+  {
+    "id": 2,
+    "code": "D02",
+    "name": "Lombardia Est",
+    "manager": "Marco Ferri"
+  },
+  {
+    "id": 3,
+    "code": "D03",
+    "name": "Piemonte",
+    "manager": "Elena Costa"
+  }
+]

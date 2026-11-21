@@ -1,0 +1,86 @@
+[
+  {
+    "month": "2025-11",
+    "revenue": 209700.27,
+    "margin": 104595.97,
+    "units": 3666,
+    "target": 209000
+  },
+  {
+    "month": "2025-12",
+    "revenue": 307969.61,
+    "margin": 153870.91,
+    "units": 5250,
+    "target": 327300
+  },
+  {
+    "month": "2026-01",
+    "revenue": 257945.8,
+    "margin": 129083.6,
+    "units": 4526,
+    "target": 260500
+  },
+  {
+    "month": "2026-02",
+    "revenue": 190066.69,
+    "margin": 95515.69,
+    "units": 3429,
+    "target": 192900
+  },
+  {
+    "month": "2026-03",
+    "revenue": 236522.51,
+    "margin": 118429.31,
+    "units": 4173,
+    "target": 241100
+  },
+  {
+    "month": "2026-04",
+    "revenue": 220945.76,
+    "margin": 110695.16,
+    "units": 3932,
+    "target": 221500
+  },
+  {
+    "month": "2026-05",
+    "revenue": 235424.87,
+    "margin": 118441.27,
+    "units": 4222,
+    "target": 237100
+  },
+  {
+    "month": "2026-06",
+    "revenue": 237268.86,
+    "margin": 117943.56,
+    "units": 3986,
+    "target": 233700
+  },
+  {
+    "month": "2026-07",
+    "revenue": 277111.88,
+    "margin": 139262.58,
+    "units": 4906,
+    "target": 288900
+  },
+  {
+    "month": "2026-08",
+    "revenue": 243499.85,
+    "margin": 120540.45,
+    "units": 4118,
+    "target": 243500
+  },
+  {
+    "month": "2026-09",
+    "revenue": 217822.63,
+    "margin": 109097.93,
+    "units": 3875,
+    "target": 220400
+  },
+  {
+    "month": "2026-10",
+    "revenue": 249835.46,
+    "margin": 124551.66,
+    "units": 4217,
+    "target": 246800
+  }
+]

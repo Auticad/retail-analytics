@@ -1,0 +1,62 @@
+[
+  {
+    "id": 3,
+    "code": "MB01",
+    "name": "Monza Centro",
+    "city": "Monza",
+    "province": "MB",
+    "districtId": 1,
+    "districtName": "Milano e Brianza",
+    "sqm": 800,
+    "openedOn": "2019-05-20",
+    "active": true
+  },
+  {
+    "id": 4,
+    "code": "MB02",
+    "name": "Vimercate",
+    "city": "Vimercate",
+    "province": "MB",
+    "districtId": 1,
+    "districtName": "Milano e Brianza",
+    "sqm": 450,
+    "openedOn": "2022-11-10",
+    "active": true
+  },
+  {
+    "id": 1,
+    "code": "MI01",
+    "name": "Milano Duomo",
+    "city": "Milano",
+    "province": "MI",
+    "districtId": 1,
+    "districtName": "Milano e Brianza",
+    "sqm": 1200,
+    "openedOn": "2018-03-15",
+    "active": true
+  },
+  {
+    "id": 2,
+    "code": "MI02",
+    "name": "Milano Navigli",
+    "city": "Milano",
+    "province": "MI",
+    "districtId": 1,
+    "districtName": "Milano e Brianza",
+    "sqm": 650,
+    "openedOn": "2020-09-01",
+    "active": true
+  },
+  {
+    "id": 5,
+    "code": "MI03",
+    "name": "Sesto San Giovanni",
+    "city": "Sesto San Giovanni",
+    "province": "MI",
+    "districtId": 1,
+    "districtName": "Milano e Brianza",
+    "sqm": 500,
+    "openedOn": "2025-09-01",
+    "active": true
+  }
+]

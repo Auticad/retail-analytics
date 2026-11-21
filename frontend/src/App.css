@@ -1,0 +1,36 @@
+.barra { display: flex; align-items: center; gap: 2rem; padding: 0.75rem 1.5rem; background: #fff; border-bottom: 3px solid #e6a817; }
+.barra nav { display: flex; gap: 0.5rem; }
+.barra nav button.attiva { background: #e6a817; border-color: #e6a817; color: #fff; }
+.contenitore { max-width: 1100px; margin: 1.5rem auto; padding: 0 1.5rem; }
+
+.filtro { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: end; margin: 0 0 1rem; }
+.filtro label { display: flex; flex-direction: column; font-size: 0.85rem; gap: 0.2rem; }
+.periodo { color: #5a5a5a; font-size: 0.9rem; }
+.errore { background: #fdecea; color: #b71c1c; padding: 0.6rem 0.8rem; border-radius: 4px; }
+
+.kpi-griglia { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.kpi { display: flex; flex-direction: column; background: #fff; border-top: 3px solid #e6a817; padding: 0.9rem 1rem; border-radius: 4px; }
+.kpi-titolo { font-size: 0.85rem; color: #5a5a5a; }
+.kpi-valore { font-size: 1.6rem; font-weight: 600; }
+.kpi-nota { font-size: 0.8rem; color: #5a5a5a; }
+.grafico { background: #fff; padding: 1rem 0.5rem 0.5rem; border-radius: 4px; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.92rem; }
+th, td { padding: 0.5rem 0.6rem; border-bottom: 1px solid #e8e2d4; text-align: left; }
+th { background: #faf6ea; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.sotto { color: #b71c1c; }
+.azioni-riga { white-space: nowrap; }
+.azioni-riga button { margin-right: 0.3rem; }
+
+.scheda { background: #fff; padding: 1rem 1.2rem; border-radius: 4px; margin-bottom: 1.5rem; }
+.scheda h2 { margin-top: 0; }
+.campi { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.8rem; }
+.campo { display: flex; flex-direction: column; font-size: 0.85rem; gap: 0.2rem; }
+.campo small { color: #b71c1c; }
+.con-errore input, .con-errore select { border-color: #b71c1c; }
+.spunta { flex-direction: row; align-items: center; gap: 0.4rem; align-self: end; }
+.azioni { margin-top: 1rem; display: flex; gap: 0.5rem; }
+
+.avviso-demo { background: #fff8e1; border-bottom: 1px solid #e6a817; padding: 0.6rem 1.5rem; font-size: 0.9rem; }
+.filtro > button.attiva { background: #e6a817; border-color: #e6a817; color: #fff; }

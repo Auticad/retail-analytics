@@ -1,0 +1,38 @@
+[
+  {
+    "id": 12,
+    "code": "NO01",
+    "name": "Novara",
+    "city": "Novara",
+    "province": "NO",
+    "districtId": 3,
+    "districtName": "Piemonte",
+    "sqm": 450,
+    "openedOn": "2023-09-25",
+    "active": true
+  },
+  {
+    "id": 10,
+    "code": "TO01",
+    "name": "Torino Centro",
+    "city": "Torino",
+    "province": "TO",
+    "districtId": 3,
+    "districtName": "Piemonte",
+    "sqm": 1100,
+    "openedOn": "2016-04-18",
+    "active": true
+  },
+  {
+    "id": 11,
+    "code": "TO02",
+    "name": "Torino Lingotto",
+    "city": "Torino",
+    "province": "TO",
+    "districtId": 3,
+    "districtName": "Piemonte",
+    "sqm": 700,
+    "openedOn": "2020-02-03",
+    "active": true
+  }
+]

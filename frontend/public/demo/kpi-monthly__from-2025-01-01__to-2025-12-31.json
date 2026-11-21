@@ -1,0 +1,86 @@
+[
+  {
+    "month": "2025-01",
+    "revenue": 238669.42,
+    "margin": 119714.72,
+    "units": 4271,
+    "target": 236900
+  },
+  {
+    "month": "2025-02",
+    "revenue": 192494.19,
+    "margin": 96658.69,
+    "units": 3384,
+    "target": 201300
+  },
+  {
+    "month": "2025-03",
+    "revenue": 210136.9,
+    "margin": 104687.1,
+    "units": 3536,
+    "target": 214400
+  },
+  {
+    "month": "2025-04",
+    "revenue": 196562.92,
+    "margin": 98810.12,
+    "units": 3421,
+    "target": 194100
+  },
+  {
+    "month": "2025-05",
+    "revenue": 207509.54,
+    "margin": 102751.14,
+    "units": 3504,
+    "target": 215300
+  },
+  {
+    "month": "2025-06",
+    "revenue": 181825.18,
+    "margin": 91643.68,
+    "units": 3318,
+    "target": 190600
+  },
+  {
+    "month": "2025-07",
+    "revenue": 240938.12,
+    "margin": 121271.32,
+    "units": 4134,
+    "target": 248100
+  },
+  {
+    "month": "2025-08",
+    "revenue": 194846.28,
+    "margin": 98022.38,
+    "units": 3524,
+    "target": 194200
+  },
+  {
+    "month": "2025-09",
+    "revenue": 214623.71,
+    "margin": 107336.01,
+    "units": 3596,
+    "target": 215500
+  },
+  {
+    "month": "2025-10",
+    "revenue": 222765.46,
+    "margin": 111504.46,
+    "units": 3825,
+    "target": 223300
+  },
+  {
+    "month": "2025-11",
+    "revenue": 209700.27,
+    "margin": 104595.97,
+    "units": 3666,
+    "target": 209000
+  },
+  {
+    "month": "2025-12",
+    "revenue": 307969.61,
+    "margin": 153870.91,
+    "units": 5250,
+    "target": 327300
+  }
+]

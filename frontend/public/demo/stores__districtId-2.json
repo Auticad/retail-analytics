@@ -1,0 +1,50 @@
+[
+  {
+    "id": 6,
+    "code": "BG01",
+    "name": "Bergamo Città Bassa",
+    "city": "Bergamo",
+    "province": "BG",
+    "districtId": 2,
+    "districtName": "Lombardia Est",
+    "sqm": 900,
+    "openedOn": "2017-10-05",
+    "active": true
+  },
+  {
+    "id": 7,
+    "code": "BS01",
+    "name": "Brescia Centro",
+    "city": "Brescia",
+    "province": "BS",
+    "districtId": 2,
+    "districtName": "Lombardia Est",
+    "sqm": 850,
+    "openedOn": "2019-02-12",
+    "active": true
+  },
+  {
+    "id": 8,
+    "code": "BS02",
+    "name": "Desenzano",
+    "city": "Desenzano del Garda",
+    "province": "BS",
+    "districtId": 2,
+    "districtName": "Lombardia Est",
+    "sqm": 400,
+    "openedOn": "2021-06-01",
+    "active": true
+  },
+  {
+    "id": 9,
+    "code": "CR01",
+    "name": "Cremona",
+    "city": "Cremona",
+    "province": "CR",
+    "districtId": 2,
+    "districtName": "Lombardia Est",
+    "sqm": 350,
+    "openedOn": "2026-03-02",
+    "active": true
+  }
+]
